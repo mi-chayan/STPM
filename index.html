@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="bn" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KPI and PIB</title>
+<style>
+:root{--bg:#f1f4fb;--card:#fff;--tx:#1e2340;--mut:#6b7392;--bd:#e0e5f2;--ac:#4f46e5;--ac2:#0ea5a4;--acs:#eef0ff;--th:#3730a3;--thx:#fff;--fl:#f5f6ff;--zb:#fafbff;--hv:#eef0ff;--ft:#e0e7ff;--dn:#e11d48;--dns:#fff1f4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1224;--card:#181c36;--tx:#e8eaff;--mut:#9ba3cc;--bd:#2a3058;--ac:#818cf8;--ac2:#2dd4bf;--acs:#232957;--th:#312e81;--thx:#fff;--fl:#1e2342;--zb:#1b2040;--hv:#262d5e;--ft:#27306b;--dn:#fb7185;--dns:#3a1a2c}}
+:root[data-theme="dark"]{--bg:#0f1224;--card:#181c36;--tx:#e8eaff;--mut:#9ba3cc;--bd:#2a3058;--ac:#818cf8;--ac2:#2dd4bf;--acs:#232957;--th:#312e81;--thx:#fff;--fl:#1e2342;--zb:#1b2040;--hv:#262d5e;--ft:#27306b;--dn:#fb7185;--dns:#3a1a2c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.top{background:linear-gradient(120deg,#4f46e5,#0ea5a4);color:#fff;padding:20px 18px 54px}
+.top h1{margin:0;font-size:22px}.top p{margin:4px 0 0;opacity:.85;font-size:13px}
+.main{max-width:1280px;margin:-36px auto 0;padding:0 14px 24px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;box-shadow:0 4px 18px rgba(40,50,120,.08);margin-bottom:14px}
+input,select,textarea,button{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;min-width:0}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--ac);outline-offset:-1px}
+button{cursor:pointer;font-weight:600}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff}
+button.d{color:var(--dn);background:var(--dns);border-color:transparent}
+button:hover{filter:brightness(.96)}
+.tabs{display:flex;gap:4px;padding:8px 8px 0;border-bottom:1px solid var(--bd);overflow-x:auto}
+.tab{border:0;background:none;border-radius:8px 8px 0 0;padding:10px 16px;color:var(--mut);border-bottom:3px solid transparent;white-space:nowrap}
+.tab.on{color:var(--ac);border-bottom-color:var(--ac);background:var(--acs)}
+.pane{display:none;padding:16px}.pane.on{display:block}
+.pane .hint{color:var(--mut);font-size:13px;margin:0 0 12px}
+.drop{display:flex;flex-direction:column;align-items:center;gap:6px;border:2px dashed var(--ac);background:var(--acs);border-radius:12px;padding:26px 12px;text-align:center;cursor:pointer}
+.drop b{color:var(--ac);font-size:15px}.drop input{display:none}
+.drop span{color:var(--mut);font-size:12px}
+textarea{width:100%;height:110px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.grid label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut);font-weight:600}
+.grid input{width:100%}
+.act{margin-top:14px;display:flex;gap:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.st{background:var(--card);border:1px solid var(--bd);border-left:5px solid var(--ac);border-radius:12px;padding:10px 14px;box-shadow:0 2px 10px rgba(40,50,120,.06)}
+.st:nth-child(2){border-left-color:var(--ac2)}.st:nth-child(3){border-left-color:#f59e0b}.st:nth-child(4){border-left-color:#ec4899}
+.st small{color:var(--mut);font-size:12px}.st div{font-size:20px;font-weight:700}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.bar .sp{flex:1}.mut{color:var(--mut);font-size:12px}
+.wrap{overflow:auto;max-height:70vh;border:1px solid var(--bd);border-radius:14px;background:var(--card);box-shadow:0 4px 18px rgba(40,50,120,.08)}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:960px}
+th,td{padding:8px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--bd)}
+.h th{background:var(--th);color:var(--thx);position:sticky;top:0;z-index:2;height:38px;font-weight:600}
+.fl th{background:var(--fl);position:sticky;top:38px;z-index:2;padding:6px}
+.fl select{width:100%;padding:5px 6px;font-size:12px;font-weight:400}
+td.n,th.n{text-align:right}
+tbody tr:nth-child(even){background:var(--zb)}
+tbody tr:hover{background:var(--hv)}
+tfoot td{background:var(--ft);font-weight:700;position:sticky;bottom:0;border-bottom:0;color:var(--ac)}
+tbody button{padding:3px 10px;font-size:12px}
+.sm{background:var(--acs);border:1px solid var(--bd);border-left:5px solid var(--ac);border-radius:14px;padding:12px 16px;margin-bottom:12px}
+.smt{font-weight:700;color:var(--ac);margin-bottom:8px}
+.smg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.smg div{background:var(--card);border-radius:10px;padding:8px 12px}
+.smg small{display:block;color:var(--mut);font-size:12px}
+.smg b{font-size:17px}
+.up{background:var(--ac);color:#fff;border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer;font-size:13px}
+.up input{display:none}
+:root{--tl:#d6f1ee;--tlc:#eef9f8;--tlt:#0f5f5c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tl:#1d4b4a;--tlc:#183231;--tlt:#bff3ef}}
+:root[data-theme="dark"]{--tl:#1d4b4a;--tlc:#183231;--tlt:#bff3ef}
+.h th:nth-child(n+8){background:var(--tl);color:var(--tlt)}
+.fl th:nth-child(n+8){background:var(--tlc)}
+tbody td:nth-child(n+8){background:var(--tlc)}
+tfoot td:nth-child(n+6){background:var(--tl);color:var(--tlt)}
+.ov{display:none;position:fixed;inset:0;background:rgba(10,14,40,.55);z-index:50;overflow:auto;padding:20px 12px}
+.ov.on{display:block}
+.rpbox{background:var(--card);max-width:1000px;margin:0 auto;border-radius:14px;padding:18px}
+.rpbox h2{margin:0 0 4px;font-size:18px}
+.rpbox table{min-width:0;width:100%}
+.rpbox th{background:var(--th);color:var(--thx)}
+.rpbox tr.gt td{background:var(--ft);font-weight:700;color:var(--ac)}
+.rpbox tr.st td{background:var(--fl);font-weight:600}
+.rpbox{max-width:1200px}
+.rb{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+@page{size:A4 landscape;margin:10mm}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body>*:not(#rp){display:none!important}#rp{position:static;background:none;padding:0;display:block}.rpbox{max-width:none;padding:0}.rb{display:none!important}}
+</style>
+</head>
+<body>
+<div class="top"><h1>KPI and PIB</h1><p>Data input, dropdown filter ar auto sum</p></div>
+<div class="main">
+
+<datalist id="secs"></datalist>
+
+<div class="bar"><button onclick="resetF()">Filter reset</button><span class="mut" id="cnt"></span><span class="mut" id="xmsg"></span><span class="sp"></span><button class="p" onclick="openRp()">Report</button><label class="up" title=".xlsx, .xls ba .csv">Upload Excel<input type="file" id="xf" accept=".xlsx,.xls,.csv" onchange="importX(this)"></label><button class="d" onclick="clearAll()">Delete all data</button></div>
+
+<div id="sm" class="sm" style="display:none"></div>
+<div class="wrap"><table>
+<thead>
+<tr class="h"><th>Section</th><th>Designation</th><th>Category</th><th class="n">WOT</th><th class="n">WOT Amount</th><th class="n">Staff Manpower</th><th class="n">Staff Amount</th><th class="n">Total Manpower</th><th class="n">Total Amount</th></tr>
+<tr class="fl">
+<th><select id="f0" onchange="render()"></select></th>
+<th><select id="f1" onchange="render()"></select></th>
+<th><select id="f2" onchange="render()"><option value="">All</option><option value="W">WOT</option><option value="S">Staff</option></select></th>
+<th></th><th></th><th></th><th></th><th></th><th></th></tr>
+</thead>
+<tbody id="tb"></tbody>
+<tfoot><tr id="ft"></tr></tfoot>
+</table></div>
+<p class="mut">Section, Designation ar Category (WOT / Staff) dropdown diye filter korun. Total = WOT + Staff (auto); Category select korle shudhu oi category r hishab hoy. Sum shudhu filter kora row-gulor.</p>
+</div>
+
+<div class="ov" id="rp"><div class="rpbox"><h2>KPI and PIB — Report</h2><div class="mut" id="rpi"></div><div id="rpb" style="margin-top:12px;overflow-x:auto"></div><div class="rb"><button class="p" onclick="window.print()">Print / PDF</button><button onclick="rpX()">Download Excel</button><button onclick="document.getElementById('rp').classList.remove('on')">Close</button></div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+var rows=[],KEY="mp_rows_v1";
+try{rows=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){rows=[]}
+(function(){var p="";rows.forEach(function(r){if(r.s)p=r.s;else r.s=p})})();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(rows))}catch(e){}}
+function tab(n){var t=document.querySelectorAll(".tab"),p=document.querySelectorAll(".pane");for(var i=0;i<3;i++){t[i].classList.toggle("on",i==n);p[i].classList.toggle("on",i==n)}}
+function num(v){v=parseFloat(String(v==null?"":v).replace(/,/g,""));return isNaN(v)?0:v}
+function mk(s,d,w,wa,m,ma){w=num(w);wa=num(wa);m=num(m);ma=num(ma);return{s:String(s).trim(),d:String(d).trim(),w:w,wa:wa,m:m,ma:ma,tm:w+m,ta:wa+ma}}
+function addRow(){var v=[0,1,2,3,4,5].map(function(i){return document.getElementById("a"+i).value});
+ if(!v[0]&&!v[1])return;rows.push(mk.apply(null,v));[0,1,2,3,4,5].forEach(function(i){document.getElementById("a"+i).value=""});save();render()}
+function pasteAdd(){var t=document.getElementById("paste").value;if(!t.trim())return;
+ t.split(/\r?\n/).forEach(function(l){if(!l.trim())return;var c=l.split("\t");
+  if(/^section$/i.test((c[0]||"").trim()))return;rows.push(mk(c[0]||"",c[1]||"",c[2],c[3],c[4],c[5]))});
+ document.getElementById("paste").value="";save();render()}
+function importX(inp){var f=inp.files[0],msg=document.getElementById("xmsg");if(!f)return;
+ if(typeof XLSX==="undefined"){msg.textContent="Excel library load hoyni (internet check korun)";return}
+ var r=new FileReader();r.onload=function(e){try{
+  var wb=XLSX.read(e.target.result,{type:"array"}),ws=wb.Sheets[wb.SheetNames[0]],a=XLSX.utils.sheet_to_json(ws,{header:1,defval:""}),c=0;
+  var ps="",sk=0;rows=[];a.forEach(function(x){if(!x||(!String(x[0]).trim()&&!String(x[1]).trim()))return;if(/^section$/i.test(String(x[0]).trim()))return;
+   if(/total/i.test(String(x[0])+" "+String(x[1]))){sk++;return}
+   var sc=String(x[0]).trim()||ps;ps=sc;rows.push(mk(sc,x[1],x[2],x[3],x[4],x[5]));c++});
+  save();render();msg.textContent=c+" row import hoyeche"+(sk?" ("+sk+" ta Total row bad deya hoyeche)":"")}catch(err){msg.textContent="File pora jayni"}
+  inp.value=""};r.readAsArrayBuffer(f)}
+function del(i){rows.splice(i,1);save();render()}
+function clearAll(){if(rows.length&&confirm("Delete all data?")){rows=[];save();render()}}
+function resetF(){for(var i=0;i<3;i++)document.getElementById("f"+i).value="";render()}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function fmt(n){return n.toLocaleString("en-US")}
+function render(){
+ var K=["s","d"],fv=[],secs=[];
+ rows.forEach(function(r){if(secs.indexOf(r.s)<0)secs.push(r.s)});secs.sort();
+ K.forEach(function(key,i){var el=document.getElementById("f"+i),cur=el.value,u=[];
+  rows.forEach(function(r){var v=String(r[key]);if(u.indexOf(v)<0)u.push(v)});u.sort();
+  el.innerHTML='<option value="">All</option>'+u.map(function(v){return'<option value="'+esc(v)+'">'+esc(v)+'</option>'}).join("");
+  el.value=u.indexOf(cur)>-1?cur:"";fv[i]=el.value});
+ var cat=document.getElementById("f2").value;
+ document.getElementById("secs").innerHTML=secs.map(function(s){return'<option value="'+esc(s)+'">'}).join("");
+ var T=[0,0,0,0,0,0],h="",n=0;
+ rows.forEach(function(r,i){
+  if(fv[0]!==""&&r.s!==fv[0])return;
+  if(fv[1]!==""&&r.d!==fv[1])return;
+  var hw=r.w||r.wa,hs=r.m||r.ma;
+  if(cat=="W"&&!hw)return;if(cat=="S"&&!hs)return;
+  var w=cat=="S"?0:r.w,wa=cat=="S"?0:r.wa,m=cat=="W"?0:r.m,ma=cat=="W"?0:r.ma;
+  var v=[w,wa,m,ma,w+m,wa+ma],lb=hw&&hs?"WOT + Staff":hw?"WOT":hs?"Staff":"";
+  n++;for(var j=0;j<6;j++)T[j]+=(j%2==0?(v[j]?1:0):v[j]);T[4]+=(v[0]?1:0)+(v[2]?1:0)-(v[4]?1:0);
+  h+='<tr><td>'+esc(r.s)+'</td><td>'+esc(r.d)+'</td><td>'+lb+'</td>'+v.map(function(x){return'<td class="n">'+(x?fmt(x):"")+'</td>'}).join("")+'</tr>';
+ });
+ document.getElementById("tb").innerHTML=h||'<tr><td colspan="9" class="mut">Kono data nai</td></tr>';
+ document.getElementById("ft").innerHTML='<td colspan="3">SUM ('+n+' row)</td>'+T.map(function(v,i){return'<td class="n">'+fmt(v)+(i%2==0?' <small>count</small>':'')+'</td>'}).join("");
+ document.getElementById("cnt").textContent=n+" / "+rows.length+" row dekhano hocche";
+ var sm=document.getElementById("sm");
+ if(fv[0]===""&&fv[1]===""&&cat===""){sm.style.display="none"}else{
+  var lbl=[fv[0],fv[1],cat=="W"?"WOT":cat=="S"?"Staff":""].filter(Boolean).join(" \u203A ");
+  sm.style.display="block";
+  sm.innerHTML='<div class="smt">Summary: '+esc(lbl)+' <span class="mut">('+n+' row)</span></div><div class="smg">'+
+   [["WOT Count",T[0]],["WOT Amount",T[1]],["Staff Count",T[2]],["Staff Amount",T[3]],["Total Count",T[4]],["Total Amount",T[5]]].map(function(x){return'<div><small>'+x[0]+'</small><b>'+fmt(x[1])+'</b></div>'}).join("")+'</div>'}
+}
+var RP=[];
+function filt(){var f0=document.getElementById("f0").value,f1=document.getElementById("f1").value,cat=document.getElementById("f2").value,out=[];
+ rows.forEach(function(r){if(f0!==""&&r.s!==f0)return;if(f1!==""&&r.d!==f1)return;var hw=r.w||r.wa,hs=r.m||r.ma;if(cat=="W"&&!hw)return;if(cat=="S"&&!hs)return;
+  out.push({s:r.s,d:r.d,lb:hw&&hs?"WOT + Staff":hw?"WOT":hs?"Staff":"",v:[cat=="S"?0:r.w,cat=="S"?0:r.wa,cat=="W"?0:r.m,cat=="W"?0:r.ma]})});return out}
+function openRp(){var L=filt(),order=[],g={},h="";
+ L.forEach(function(o){if(!g[o.s]){g[o.s]=[];order.push(o.s)}g[o.s].push(o)});
+ RP=[["Section","Designation","Category","WOT","WOT Amount","Staff Manpower","Staff Amount","Total Manpower","Total Amount"]];
+ function rowH(a,cls){RP.push(a);return'<tr'+(cls?' class="'+cls+'"':'')+'>'+a.map(function(v,i){return i<3?'<td>'+esc(v)+'</td>':'<td class="n">'+(typeof v=="number"?fmt(v):esc(v))+'</td>'}).join("")+'</tr>'}
+ function tot(list,label){var wc=0,wa=0,sc=0,sa=0;list.forEach(function(o){wc+=o.v[0]?1:0;wa+=o.v[1];sc+=o.v[2]?1:0;sa+=o.v[3]});
+  return [label,"","",wc+" count",wa,sc+" count",sa,(wc+sc)+" count",wa+sa]}
+ order.forEach(function(k){g[k].forEach(function(o){var v=o.v;
+  h+=rowH([o.s,o.d,o.lb,v[0]||"",v[1]||"",v[2]||"",v[3]||"",(v[0]+v[2])||"",(v[1]+v[3])||""],"")});});
+ if(order.length)h+=rowH(tot(L,"Grand Total"),"gt");
+ var f0=document.getElementById("f0").value,f1=document.getElementById("f1").value,c=document.getElementById("f2").value;
+ var lb=[f0,f1,c=="W"?"WOT":c=="S"?"Staff":""].filter(Boolean).join(" \u203A ")||"All data";
+ document.getElementById("rpi").textContent="Filter: "+lb+"  |  Date: "+new Date().toLocaleDateString("en-GB")+"  |  "+L.length+" row";
+ document.getElementById("rpb").innerHTML=order.length?'<table><thead><tr>'+RP[0].map(function(t,i){return'<th'+(i>2?' class="n"':'')+'>'+t+'</th>'}).join("")+'</tr></thead><tbody>'+h+'</tbody></table>':'<div class="mut">Kono data nai</div>';
+ document.getElementById("rp").classList.add("on")}
+function rpX(){if(typeof XLSX==="undefined"){alert("Internet lagbe");return}var ws=XLSX.utils.aoa_to_sheet(RP),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Report");XLSX.writeFile(wb,"KPI_PIB_Report.xlsx")}
+render();
+</script>
+</body>
+</html>
